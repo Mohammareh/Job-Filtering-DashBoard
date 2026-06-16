@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export function JobOffer() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -19,15 +17,10 @@ export function JobOffer() {
     fetchJobs();
   }, []);
 
-  console.log(jobs);
+  function consoling(job) {
+    console.log(job.title);
 
-  function consoling(title) {
-    console.log(title);
-    // navigate(
-    //   "https://www.google.com/search?q=How+to+make+a+button+redirect+you+to+a+page+in+react&oq=How+to+make+a+button+redirect+you+to+a+page+in+react&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMgcIAxAAGO8FMgcIBBAAGO8FMgcIBRAAGO8FMgcIBhAAGO8FMgcIBxAAGO8F0gEKMTAxMzlqMGoxNagCCLACAfEF9f5QFJVYkp8&sourceid=chrome&ie=UTF-8",
-    // );
-    window.location.href =
-      "https://www.google.com/search?q=How+to+make+a+button+redirect+you+to+a+page+in+react&oq=How+to+make+a+button+redirect+you+to+a+page+in+react&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMgcIAxAAGO8FMgcIBBAAGO8FMgcIBRAAGO8FMgcIBhAAGO8FMgcIBxAAGO8F0gEKMTAxMzlqMGoxNagCCLACAfEF9f5QFJVYkp8&sourceid=chrome&ie=UTF-8";
+    window.open(job.applicationLink);
   }
   return (
     <div
@@ -45,7 +38,7 @@ export function JobOffer() {
         jobs.map((job) => (
           <div
             key={job.title}
-            onClick={() => consoling(job.title)}
+            onClick={() => consoling(job)}
             className="
             grid p-1
             w-11/12  m-4 min-h-40 sm:max-h-40 sm:w-11/12
@@ -56,6 +49,8 @@ export function JobOffer() {
           "
           >
             <h1 className="text-[1.2rem] truncate">{job.title}</h1>
+            {job.description}
+
             <p className="border-4 border-black p-1 rounded-2xl self-end justify-self-start ml-2 mb-2">
               Role: {job.categories[0]}
             </p>

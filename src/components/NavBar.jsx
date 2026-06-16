@@ -2,7 +2,7 @@ export function NavBar() {
   return (
     <>
       <div
-        className="
+        className=" overflow-y-auto
       grid grid-cols-3 
     w-full h-[15vh] bg-blue-900"
       >
