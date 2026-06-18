@@ -1,19 +1,15 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
-app.set("view engine", "ejs");
+app.use(cors());
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  console.log("Here");
-  res.render("index", { text1: "WOrld" });
+app.get("/api/jobs", async (req, res) => {
+  // Your job aggregation logic here
+  "https://corsproxy.io/?https://himalayas.app/jobs/api";
+  const jobs = await fetchAllJobs();
+  res.json(jobs);
 });
 
-app.get("/users", (req, res) => {
-  res.send("User List");
-});
-
-app.get("/users/new", (req, res) => {
-  res.send("User New Form");
-});
-
-app.listen(3000);
+app.listen(5000, () => console.log("Server on port 5000"));

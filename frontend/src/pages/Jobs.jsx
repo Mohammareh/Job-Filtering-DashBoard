@@ -7,9 +7,7 @@ export function Jobs() {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch(
-        "https://corsproxy.io/?https://himalayas.app/jobs/api",
-      );
+      const response = await fetch("/api/jobs");
       const response2 = await fetch(
         "https://corsproxy.io/?https://arbeitnow.com/api/job-board-api",
       );
