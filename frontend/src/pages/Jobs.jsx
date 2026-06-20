@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Job } from "../components/Job";
+import { fetchJobsData } from "../api";
 
 export function Jobs({ theme, textColor }) {
   const [jobs, setJobs] = useState([]);
@@ -7,9 +8,8 @@ export function Jobs({ theme, textColor }) {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch("http://localhost:5000/api/jobs");
+      const data = await fetchJobsData();
 
-      const data = await response.json();
       console.log(data);
       setJobs(data);
       setIsLoading(false);
@@ -35,16 +35,13 @@ export function Jobs({ theme, textColor }) {
         </div>
       ) : (
         <>
-          {jobs[0].jobs.map((job) => (
+          {jobs.map((job) => (
             <Job
               theme={theme}
               textColor={textColor}
               key={job.guide}
               job={job}
             />
-          ))}
-          {jobs[1].data.map((job) => (
-            <Job theme={theme} textColor={textColor} key={job.url} job={job} />
           ))}
         </>
       )}
