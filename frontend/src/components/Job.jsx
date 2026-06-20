@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function Job({ job }) {
+export function Job({ job, theme, textColor }) {
   function handleClick(job) {
     console.log(job.title);
     console.log(job.guid);
@@ -45,15 +45,16 @@ export function Job({ job }) {
         to={`/job/${encodeURIComponent(id)}`}
         key={job.guid}
         onClick={() => handleClick(job)}
-        className="
-            flex flex-col p-1 scrollbar-none
-            w-10/12 min-h-80 m-4 sm:w-11/12
-          bg-gray-800 text-white
-            hover:scale-105 hover:bg-blue-950 duration-300
-            cursor-pointer text-center
-            rounded-xl
-            "
+        className="flex flex-col p-1 scrollbar-none
+           w-11/12 min-h-80 my-4 sm:w-11/12 
+           bg-brand-surface text-brand-text
+           hover:scale-102 hover:bg-brand-hover duration-100
+           sm:text-2xl shadow-brand-primary
+           cursor-pointer text-center shadow-[0_0_25px_rgba(0,0,0,0.1)]
+
+           rounded-xl"
       >
+        {/* Logo and title */}
         <div className="flex">
           {job.companyLogo ? (
             <>
@@ -68,18 +69,19 @@ export function Job({ job }) {
                   srcSet={job.companyLogo}
                   src={job.companyLogo}
                 />
-
-                <span className="flex h-full w-full rounded-full bg-gray-50 font-medium text-primary-700"></span>
               </span>
-              <h2 className="ml-4 text-3xl mt-4">{job.companyName}</h2>
+
+              <h2 className="ml-4 sm:text-2xl text-xl font-bold mt-4">
+                {job.companyName}
+              </h2>
             </>
           ) : (
             <div className="flex w-full justify-center">
-              <h2 className="ml-4 text-3xl">{job.companyName}</h2>
+              <h2 className="ml-4 sm:text-2xl text-xl">{job.companyName}</h2>
             </div>
           )}
         </div>
-        <h1 className="text-[1.2rem] ">{job.title}</h1>
+        <h1 className="sm:text-2xl text-xl ">{job.title}</h1>
 
         {/* salary info */}
         <div className="mt-auto justify-around flex">
@@ -102,6 +104,7 @@ export function Job({ job }) {
             </p>
           ) : null}
 
+          {/* Time published */}
           {diffrences["diffrenceInHours"] < 2 ? (
             <p className="self-center">Just now</p>
           ) : (

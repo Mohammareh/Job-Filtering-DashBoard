@@ -36,19 +36,19 @@ export function JobPage() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className=" w-full flex flex-col pt-4 h-full bg-gray-900">
+    <div className=" w-full flex flex-col pt-4 h-full bg-brand-background">
       <div>
-        <h2 className="leading-15 mx-4 p-2 border-3 text- border-blue-950 rounded-2xl text-4xl sm:text-4xlm font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-size-[200%_auto] animate-[move-gradient_4s_ease_infinite]">
+        <h2 className="leading-15 mx-4 p-2  rounded-2xl text-4xl sm:text-4xlm font-extrabold text-transparent bg-clip-text bg-linear-to-r from-brand-primary via-brand-primary/20 to-brand-primary bg-size-[200%_auto] animate-[move-gradient_4s_ease_infinite]">
           {job?.title}
         </h2>
       </div>
 
       <ApplyButton job={job} />
 
-      <p className="ml-3 text-4xl text-white items-start">Description</p>
+      <p className="ml-3 text-4xl text-brand-text items-start">Description</p>
 
       <div
-        className="text-white p-5"
+        className="text-brand-text p-5"
         dangerouslySetInnerHTML={{ __html: job?.description || "" }}
       />
       {console.log(job)}

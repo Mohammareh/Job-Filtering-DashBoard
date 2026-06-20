@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DarkModeToggle from "./DarkModeToggle";
 
 export function NavBar() {
   const navigate = useNavigate();
@@ -7,14 +9,20 @@ export function NavBar() {
     switch (btn) {
       case "home":
         navigate("/");
-        console.log("Navigate page clicked");
         break;
 
       case "search":
         break;
 
+      case "jobs":
+        navigate("/jobs");
+        break;
+
       case "about":
         navigate("/about");
+        break;
+
+      case "theme":
         console.log("Aobut page clicked");
         break;
 
@@ -25,20 +33,31 @@ export function NavBar() {
 
   return (
     <>
-      <nav className="flex w-full  h-[15vh] justify-center">
-        <div className="flex rounded-2xl">
+      <nav className="flex w-full text-brand-text bg-brand-secondary border-b h-2/12 justify-around">
+        <div className="flex ">
+          <img
+            className="w-20 cursor-pointer "
+            onClick={() => {
+              handleClick("home");
+            }}
+            src="../public/JobifyTransparent.png"
+            alt="hi"
+          />
+
           <button
-            onClick={() => handleClick("home")}
+            onClick={() => handleClick("jobs")}
             className="rounded-2xl text-1xl my-3 mx-1 px-2 scrollbar-none cursor-pointer duration-200 hover:scale-105"
           >
-            Home
+            Jobs
           </button>
           <button
             onClick={() => handleClick("about")}
             className="rounded-2xl text-1xl my-3 mx-1 px-2 scrollbar-none cursor-pointer duration-200 hover:scale-105"
           >
-            About / Contact
+            About
           </button>
+
+          <DarkModeToggle />
         </div>
       </nav>
     </>

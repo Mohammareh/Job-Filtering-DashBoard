@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Job } from "../components/Job";
 
-export function Jobs() {
+export function Jobs({ theme, textColor }) {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,11 +21,12 @@ export function Jobs() {
   return (
     <div
       className="
-     flex flex-col 
+     flex flex-col
     sm:grid sm:grid-cols-2 gap-1 justify-items-center items-center lg:grid-cols-3 xl:grid-cols-4
     overflow-y-auto
     scrollbar-none
-    bg-gray-900
+    bg-linear-to-r from-brand-background to-brand-secondary
+   
     "
     >
       {isLoading ? (
@@ -35,10 +36,15 @@ export function Jobs() {
       ) : (
         <>
           {jobs[0].jobs.map((job) => (
-            <Job key={job.guide} job={job} />
+            <Job
+              theme={theme}
+              textColor={textColor}
+              key={job.guide}
+              job={job}
+            />
           ))}
           {jobs[1].data.map((job) => (
-            <Job key={job.url} job={job} />
+            <Job theme={theme} textColor={textColor} key={job.url} job={job} />
           ))}
         </>
       )}
