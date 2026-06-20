@@ -10,28 +10,28 @@ export function JobPage() {
   useEffect(() => {
     const decodedId = decodeURIComponent(jobId);
 
-    fetch("https://corsproxy.io/?https://himalayas.app/jobs/api")
+    fetch("http://localhost:5000/api/jobs")
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const foundJob = data.jobs.find((j) => j.guid === decodedId);
-        {
-          foundJob
-            ? setJob(foundJob)
-            : fetch(
-                "https://corsproxy.io/?https://arbeitnow.com/api/job-board-api",
-              )
-                .then((res) => res.json())
-                .then((data) => {
-                  console.log(data);
-                  const foundJob = data.data.find((j) => j.slug === decodedId);
-                  setJob(foundJob);
-                  setIsLoading(false);
-                });
-        }
+      .then((datas) => {
+        console.log(datas);
+
+        const himalayasJobs = datas[0]?.jobs || [];
+        const arbeitnowJobs = datas[1]?.data || [];
+
+        const foundJob =
+          himalayasJobs.find((j) => j.guid === decodedId) ||
+          arbeitnowJobs.find((j) => j.slug === decodedId);
+
+        setJob(foundJob);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching job:", error);
         setIsLoading(false);
       });
   }, [jobId]);
+
+  console.log(job);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -51,6 +51,7 @@ export function JobPage() {
         className="text-white p-5"
         dangerouslySetInnerHTML={{ __html: job?.description || "" }}
       />
+      {console.log(job)}
       <ApplyButton job={job} />
     </div>
   );

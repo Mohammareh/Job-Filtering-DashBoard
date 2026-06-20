@@ -3,6 +3,7 @@ import "./App.css";
 import { Jobs } from "./pages/Jobs";
 import { NavBar } from "./components/NavBar";
 import { JobPage } from "./pages/JobPage";
+import { About } from "./pages/About";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Jobs />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/job/:jobId" element={<JobPage />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

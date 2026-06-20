@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* WebKit browsers */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-red-950;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blue-950 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-green-950;
+  }
+
+  /* Firefox */
+  * {
+    @apply scrollbar-thin;
+    scrollbar-color: #1e1e23c9 rgba(55, 48, 48, 0);
+  }
+}

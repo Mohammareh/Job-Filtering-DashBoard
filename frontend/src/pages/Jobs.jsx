@@ -7,15 +7,11 @@ export function Jobs() {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch("/api/jobs");
-      const response2 = await fetch(
-        "https://corsproxy.io/?https://arbeitnow.com/api/job-board-api",
-      );
+      const response = await fetch("http://localhost:5000/api/jobs");
+
       const data = await response.json();
-      const data2 = await response2.json();
-      const data3 = [data, data2];
-      console.log(data3);
-      setJobs(data3);
+      console.log(data);
+      setJobs(data);
       setIsLoading(false);
     };
 
@@ -33,7 +29,7 @@ export function Jobs() {
     "
     >
       {isLoading ? (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center h-[85vh] justify-center">
           <h1 className="text-red-600 animate-pulse">Loading...</h1>
         </div>
       ) : (
@@ -42,7 +38,7 @@ export function Jobs() {
             <Job key={job.guide} job={job} />
           ))}
           {jobs[1].data.map((job) => (
-            <Job key={job.slug} job={job} />
+            <Job key={job.url} job={job} />
           ))}
         </>
       )}
