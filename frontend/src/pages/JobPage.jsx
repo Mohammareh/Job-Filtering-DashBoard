@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ApplyButton } from "../components/ApplyButton";
+import { fetchJobsData } from "../api";
 
 export function JobPage() {
   const { jobId } = useParams();
@@ -10,25 +11,19 @@ export function JobPage() {
   useEffect(() => {
     const decodedId = decodeURIComponent(jobId);
 
-    fetch("http://localhost:5000/api/jobs")
-      .then((res) => res.json())
-      .then((datas) => {
-        console.log(datas);
+    const fetchJobs = async () => {
+      const data = await fetchJobsData();
 
-        const himalayasJobs = datas[0]?.jobs || [];
-        const arbeitnowJobs = datas[1]?.data || [];
+      console.log(data);
 
-        const foundJob =
-          himalayasJobs.find((j) => j.guid === decodedId) ||
-          arbeitnowJobs.find((j) => j.slug === decodedId);
+      const foundJob = data.find((j) => j.id === decodedId) || "";
 
-        setJob(foundJob);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching job:", error);
-        setIsLoading(false);
-      });
+      setJob(foundJob);
+
+      setIsLoading(false);
+    };
+
+    fetchJobs();
   }, [jobId]);
 
   console.log(job);

@@ -24,8 +24,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
-      className=" rounded-md
-       bg-brand-secondary cursor-pointer text-brand-text hover:opacity-90 transition-opacity"
+      className=" rounded-md cursor-pointer hover:opacity-90 transition-opacity"
     >
       {darkMode ? "☀️" : "🌑"}
     </button>

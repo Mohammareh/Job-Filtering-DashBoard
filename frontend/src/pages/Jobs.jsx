@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { Job } from "../components/Job";
 import { fetchJobsData } from "../api";
+import { SearchForJobs } from "../components/SearchForJobs";
 
-export function Jobs({ theme, textColor }) {
+export function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
       const data = await fetchJobsData();
 
-      console.log(data);
       setJobs(data);
       setIsLoading(false);
     };
@@ -18,11 +21,45 @@ export function Jobs({ theme, textColor }) {
     fetchJobs();
   }, []);
 
+  const filterJobs = (query) => {
+    // If nothing typed, show all jobs
+    if (!query || query.trim() === "") {
+      return jobs;
+    }
+    // Convert query to lowercase for case-insensitive matching
+    const lowerQuery = query.toLowerCase();
+
+    return jobs.filter((job) => {
+      // Check if ANY of these fields contain the search term
+      const titleMatch = job.title?.toLowerCase().includes(lowerQuery);
+      const companyMatch = job.companyName?.toLowerCase().includes(lowerQuery);
+      const descriptionMatch = job.description
+        ?.toLowerCase()
+        .includes(lowerQuery);
+
+      return titleMatch || companyMatch || descriptionMatch;
+    });
+  };
+
+  useEffect(() => {
+    // Debounce timer
+    const timer = setTimeout(() => {
+      if (!searchQuery.trim()) {
+        setFilteredJobs(jobs);
+      } else {
+        const results = filterJobs(searchQuery);
+        setFilteredJobs(results);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery, jobs]);
+
   return (
     <div
       className="
-     flex flex-col
-    sm:grid sm:grid-cols-2 gap-1 justify-items-center items-center lg:grid-cols-3 xl:grid-cols-4
+     flex flex-col overflow-x-hidden
+    sm:grid sm:grid-cols-2 gap-1 justify-items-center items-center md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
     overflow-y-auto
     scrollbar-none
     bg-linear-to-r from-brand-background to-brand-secondary
@@ -35,14 +72,16 @@ export function Jobs({ theme, textColor }) {
         </div>
       ) : (
         <>
-          {jobs.map((job) => (
-            <Job
-              theme={theme}
-              textColor={textColor}
-              key={job.guide}
-              job={job}
-            />
-          ))}
+          <SearchForJobs
+            setSearchQuery={setSearchQuery}
+            search={search}
+            setSearch={setSearch}
+          />
+          {filteredJobs.length !== 0 ? (
+            filteredJobs.map((job) => <Job key={job.id} job={job} />)
+          ) : (
+            <p>Nothing</p>
+          )}
         </>
       )}
     </div>
@@ -67,8 +106,6 @@ employmentType: "Full Time"
 excerpt: "Spectra Platform team at Oracle is building a cloud-native platform for the Fusion Applications that operates at a large scale in a broadly distributed multi-tenant SaaS cloud environment."
 
 expiryDate: 1786773584
-
-guid: "https://himalayas.app/companies/oracle/jobs/principal-platform-software-engineer"
 
 locationRestrictions: ['United States']
 

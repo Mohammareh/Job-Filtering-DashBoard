@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 
 export function Job({ job }) {
-  function handleClick(job) {
-    console.log(job.title);
-    console.log(job.guid);
-    // window.open(job.applicationLink);
-  }
-
   const ms = job.pubDate ? job.pubDate * 1000 : job.created_at * 1000;
   const pubDate = new Date(ms);
   const now = new Date();
@@ -37,7 +31,6 @@ export function Job({ job }) {
     <Link
       to={`/job/${encodeURIComponent(job.id)}`}
       key={job.id}
-      onClick={() => handleClick(job)}
       className="flex flex-col p-1 scrollbar-none
            w-11/12 min-h-80 my-4 sm:w-11/12 
            bg-brand-surface text-brand-text

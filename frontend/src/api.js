@@ -1,4 +1,15 @@
+let cachedJobs = null;
+const REFRESH_TIME = 60 * 5 * 1000;
+let lastFetchTime = 0;
+
 export const fetchJobsData = async () => {
+  const now = Date.now();
+
+  if (cachedJobs && now - lastFetchTime < REFRESH_TIME) {
+    // Cache is fresh. Return stored data immediately.
+    return cachedJobs;
+  }
+
   try {
     let responses = [];
     const responsess = await Promise.all([
@@ -38,8 +49,6 @@ export const fetchJobsData = async () => {
       source: "Himalayas",
     }));
 
-    console.log(responses[1]);
-
     const list2 = responses[1].data.map((job) => ({
       id: job.slug || Math.random(),
       title: job.title || null,
@@ -64,6 +73,8 @@ export const fetchJobsData = async () => {
     }));
 
     const finalData = [...list, ...list2];
+    cachedJobs = finalData;
+    lastFetchTime = now;
 
     return finalData;
   } catch (error) {
@@ -72,12 +83,7 @@ export const fetchJobsData = async () => {
   }
 };
 
-/* const express = require("express");
-const cors = require("cors");
-const app = express();
-
-app.use(cors());
-app.use(express.json());
+/*
 
 let cachedJobs = null;
 let lastFetchTime = 0;

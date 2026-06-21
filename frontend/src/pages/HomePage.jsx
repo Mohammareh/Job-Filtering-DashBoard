@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SearchForJobsHomePage } from "../components/SearchForJobsHomePage";
 
 export function HomePage() {
   return (
@@ -10,21 +11,18 @@ export function HomePage() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 text-center max-w-2xl">
-            Discover your perfect opportunity across multiple platforms
+            Discover your perfect opportunity across multiple platforms by
+            searching from here ↓
           </p>
 
-          <input
-            type="text"
-            placeholder="Search for jobs"
-            class="w-full max-w-md px-4 py-3 bg-white text-gray-900 placeholder-gray-400 border border-gray-200 rounded-xl shadow-sm outline-none transition-all duration-200 ease-in-out hover:border-gray-300 focus:border-brand-primary focus:ring-4 focus:ring-blue-500/10 focus:shadow-md"
-          />
+          <SearchForJobsHomePage />
           <p className="text-brand-text">or</p>
 
           <Link
             to={"/jobs"}
-            className="px-8 py-4 mb-4 text-2xl rounded-2xl font-bold text-white bg-linear-to-r shadow-2xl shadow-brand-secondary from-brand-primary/20 to-brand-secondary hover:scale-105 duration-150 hover:shadow-lg hover:shadow-brand-text/50 cursor-pointer border-2 border-brand-text transition-all"
+            className="px-8 py-4 mb-4 text-xl sm:text-2xl  xl:text-3xl rounded-2xl font-bold text-white bg-linear-to-r shadow-2xl shadow-brand-secondary from-brand-primary/20 to-brand-secondary hover:scale-105 duration-150 hover:shadow-lg hover:shadow-brand-text/50 cursor-pointer border-2 border-brand-text transition-all"
           >
-            <span className="leading-15 rounded-2xl text-2xl sm:text-4xlm font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-500 via-brand-text to-purple-900 bg-size-[200%_auto] animate-[move-gradient_4s_ease_infinite]">
+            <span className="leading-15 rounded-2xl text-xl sm:text-2xl  xl:text-3xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-500 via-brand-text to-purple-900 bg-size-[200%_auto] animate-[move-gradient_4s_ease_infinite]">
               Discover
             </span>{" "}
             available jobs!
