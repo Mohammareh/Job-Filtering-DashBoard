@@ -12,6 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:searched" element={<Jobs />} />
         <Route path="/job/:jobId" element={<JobPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />

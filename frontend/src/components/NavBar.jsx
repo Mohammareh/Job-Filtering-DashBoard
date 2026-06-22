@@ -33,7 +33,7 @@ export function NavBar() {
 
   return (
     <>
-      <nav className="flex w-full text-brand-text bg-brand-secondary border-b h-2/12 justify-around">
+      <nav className="flex w-full overflow-x-hidden text-brand-text bg-brand-secondary border-b h-[15vh] justify-around">
         <div className="flex ">
           <img
             className="w-20 cursor-pointer "

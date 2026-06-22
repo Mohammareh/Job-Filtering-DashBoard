@@ -2,23 +2,31 @@ import { useEffect, useState } from "react";
 import { Job } from "../components/Job";
 import { fetchJobsData } from "../api";
 import { SearchForJobs } from "../components/SearchForJobs";
+import { useParams } from "react-router-dom";
 
 export function Jobs() {
+  const { searched } = useParams();
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredJobs, setFilteredJobs] = useState([]);
-  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
       const data = await fetchJobsData();
 
       setJobs(data);
+      setFilteredJobs(data);
       setIsLoading(false);
     };
 
     fetchJobs();
+  }, []);
+
+  useEffect(() => {
+    setSearchQuery(searched);
+    console.log(searched);
+    console.log(searchQuery);
   }, []);
 
   const filterJobs = (query) => {
@@ -58,7 +66,7 @@ export function Jobs() {
   return (
     <div
       className="
-     flex flex-col overflow-x-hidden
+     flex flex-col overflow-x-hidden h-[85vh]
     sm:grid sm:grid-cols-2 gap-1 justify-items-center items-center md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
     overflow-y-auto
     scrollbar-none
@@ -74,13 +82,14 @@ export function Jobs() {
         <>
           <SearchForJobs
             setSearchQuery={setSearchQuery}
-            search={search}
-            setSearch={setSearch}
+            searchQuery={searchQuery}
           />
           {filteredJobs.length !== 0 ? (
             filteredJobs.map((job) => <Job key={job.id} job={job} />)
           ) : (
-            <p>Nothing</p>
+            <p className="text-brand-text h-full">
+              No job found, try change your sentence for better results
+            </p>
           )}
         </>
       )}
