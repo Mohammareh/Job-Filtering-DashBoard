@@ -84,7 +84,12 @@ export function About() {
         Let's Connect If you're a recruiter, a fellow developer, or just want to
         chat about the tech behind this project, feel free to reach out!
         <br />
-        <a href="/jobs">💻 View the Source Code on GitHub</a>
+        <a
+          href="https://github.com/Mohammareh/Job-Filtering-DashBoard"
+          target="_blank"
+        >
+          💻 View the Source Code on GitHub
+        </a>
         <br />
         <a href="">💼 Connect with me on LinkedIn</a>
         <br />
