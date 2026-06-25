@@ -15,6 +15,7 @@ function App() {
         <Route path="/jobs/:searched" element={<Jobs />} />
         <Route path="/job/:jobId" element={<JobPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/Job-Filtering-DashBoard" element={<HomePage />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>

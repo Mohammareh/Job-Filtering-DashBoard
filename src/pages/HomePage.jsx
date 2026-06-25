@@ -4,7 +4,7 @@ import { SearchForJobsHomePage } from "../components/SearchForJobsHomePage";
 export function HomePage() {
   return (
     <>
-      <div className="h-10/12 overflow-x-hidden flex flex-col bg-linear-to-br from-brand-background to-brand-primary">
+      <div className="min-h-screen overflow-x-hidden flex flex-col bg-linear-to-br from-brand-background to-brand-primary">
         <div className="flex-1 flex flex-col justify-center items-center gap-8 px-5">
           <h1 className="text-5xl md:text-6xl font-extrabold text-center text-brand-text max-w-3xl leading-tight">
             Search Multiple Leading Job Boards in One Place.
