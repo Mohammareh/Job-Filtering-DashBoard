@@ -32,7 +32,7 @@ export function NavBar() {
             onClick={() => {
               handleClick("home");
             }}
-            src="../public/JobifyTransparent.png"
+            src="/JobifyTransparent.png"
             alt="Jobify Logo"
           />
 
