@@ -14,8 +14,6 @@ export function JobPage() {
     const fetchJobs = async () => {
       const data = await fetchJobsData();
 
-      console.log(data);
-
       const foundJob = data.find((j) => j.id === decodedId) || "";
 
       setJob(foundJob);
@@ -25,8 +23,6 @@ export function JobPage() {
 
     fetchJobs();
   }, [jobId]);
-
-  console.log(job);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -46,7 +42,6 @@ export function JobPage() {
         className="text-brand-text p-5"
         dangerouslySetInnerHTML={{ __html: job?.description || "" }}
       />
-      {console.log(job)}
       <ApplyButton job={job} />
     </div>
   );

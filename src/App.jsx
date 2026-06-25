@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import { Jobs } from "./pages/Jobs";
 import { NavBar } from "./components/NavBar";
 import { JobPage } from "./pages/JobPage";
 import { HomePage } from "./pages/HomePage";
 import { About } from "./pages/About";
+import "./App.css";
 
 function App() {
   return (

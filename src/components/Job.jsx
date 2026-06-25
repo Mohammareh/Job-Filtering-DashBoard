@@ -93,32 +93,3 @@ export function Job({ job }) {
     </Link>
   );
 }
-
-/* 
-applicationLink: "https://himalayas.app/companies/stewart/jobs/commercial-title-examiner-ca-experience-required"
-
-categories: (11) ['Platform-Engineering', 'Cloud-Engineering', 'Software-Engineering', 'DevOps-Engineering', 'Product-Development', 'Principal-Platform-Engineer', 'Software-Platform-Engineer', 'Senior-Platform-Engineer', 'Principal-Software-Engineer', 'Platform-Engineer', 'Software-Engineer']
-
-companySlug: "oracle"
-
-currency: null
-
-employmentType: "Full Time"
-
-excerpt: "Spectra Platform team at Oracle is building a cloud-native platform for the Fusion Applications that operates at a large scale in a broadly distributed multi-tenant SaaS cloud environment."
-
-expiryDate: 1786773584
-
-locationRestrictions: ['United States']
-
-parentCategories: ['Developer']
-
-seniority: ['Senior']
-
-timezoneRestrictions: (7) [-10, -9, -8, -7, -6, -5, 14]
-title: "Principal Platform Software Engineer"
-
-
-guid: "https://himalayas.app/companies/oracle/jobs/principal-platform-software-engineer"
-
-*/

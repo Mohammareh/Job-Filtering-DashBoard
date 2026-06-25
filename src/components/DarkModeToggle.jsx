@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 export default function DarkModeToggle() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Check local storage or system preference on initial load
     return (
       localStorage.getItem("theme") === "dark" ||
       (!("theme" in localStorage) &&

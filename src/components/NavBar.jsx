@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 
@@ -11,19 +10,12 @@ export function NavBar() {
         navigate("/");
         break;
 
-      case "search":
-        break;
-
       case "jobs":
         navigate("/jobs");
         break;
 
       case "about":
         navigate("/about");
-        break;
-
-      case "theme":
-        console.log("Aobut page clicked");
         break;
 
       default:

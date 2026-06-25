@@ -74,7 +74,7 @@ export function About() {
       <p className="ml-3 text-2xl text-brand-text items-start">
         Meet the Developer
         <br />
-        Hello! I’m Mohammed, a software developer focused on building efficient,
+        Hello! I'm Mohammed, a software developer focused on building efficient,
         secure, and highly functional web applications. I built this job board
         to push my skills system design, Optimaized api requests and state
         management.
@@ -91,7 +91,6 @@ export function About() {
           💻 View the Source Code on GitHub
         </a>
         <br />
-        <a href="">💼 Connect with me on LinkedIn</a>
         <br />
         <span onClick={handleCopy} className="cursor-pointer mr-2">
           💬 Send me a message or call me at +966500812403
