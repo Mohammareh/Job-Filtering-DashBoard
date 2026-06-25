@@ -33,7 +33,7 @@ export function NavBar() {
               handleClick("home");
             }}
             src="../public/JobifyTransparent.png"
-            alt="hi"
+            alt="Jobify Logo"
           />
 
           <button
