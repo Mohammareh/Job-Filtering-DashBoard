@@ -28,7 +28,7 @@ export function NavBar() {
       <nav className="flex w-full items-center overflow-hidden text-brand-text bg-brand-secondary border-b h-[15vh] justify-around">
         <div className="flex ">
           <img
-            className="w-20 sm:w-40 sm:h-40 sm:text-4xl sm:mt-15 text-center md:w-60 md:h-60 md:mt-35 md:text-5xl self-center object-contain h-20 cursor-pointer "
+            className="w-20 sm:w-40 sm:h-40 sm:text-4xl text-center md:w-60 md:h-60 md:text-5xl self-center object-contain h-20 cursor-pointer "
             onClick={() => {
               handleClick("home");
             }}
